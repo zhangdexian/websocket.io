@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>websocket测试</title>
+    <style>
+    input {
+        outline: none;
+    }
+
+    .content {
+        margin-top: 20px;
+        width: 300px;
+        min-height: 100px;
+        border: 1px solid blue;
+    }
+    </style>
+</head>
+
+<body>
+    <h3>websocket演示</h3>
+    <input type="text" id='txt'>
+    <button id='sendTxt'>发送</button>
+    </div>
+    <script>
+    var websocket = new WebSocket('ws://localhost:3000/');
+
+    function showMessage(msg) {
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        document.body.appendChild(div);
+    }
+
+    websocket.onopen = function() {
+        console.log('websocket open');
+        document.getElementById('sendTxt').onclick = function (){
+            var txt = document.getElementById('txt').value;
+            if(txt){
+                websocket.send(txt);
+            }
+        };        
+    };
+
+    //连接关闭时触发
+    websocket.onclose = function() {
+        console.log('websocket close');
+    };
+
+    //客户端收到消息时触发
+    websocket.onmessage = function(e) {
+        console.log(e);
+        showMessage(e.data);
+    };
+
+    document.getElementById('sendTxt').onclick = function() {
+        var txt = document.getElementById('txt').value;
+        websocket.send(txt);
+    };
+
+    </script>
+</body>
+
+</html>
