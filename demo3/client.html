@@ -4,22 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>websocket测试</title>
-    <style>
-    input {
-        outline: none;
-    }
-
-    .content {
-        margin-top: 20px;
-        width: 300px;
-        min-height: 100px;
-        border: 1px solid blue;
-    }
-    </style>
+    <link rel="stylesheet" href="demo3.css">
 </head>
 
 <body>
-    <h3>websocket演示</h3>
+    <h3>websocket演示案例</h3>
     <input type="text" id='txt' onkeydown="sendText(event);">
     <button id='sendTxt'>发送</button>
     </div>
@@ -65,7 +54,7 @@
             sendMsg();
         }
     };
-    //发送消息
+    //发送消息 只能是经过序列化的数据
     function sendMsg(){
         var txt = document.getElementById('txt').value;
             if(txt){

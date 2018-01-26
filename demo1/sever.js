@@ -10,9 +10,9 @@ var server = ws.createServer(function(conn){
 	})
 
 	//服务出现错误时用来处理错误，如果不加出现错误服务就会挂掉
-	// conn.on('error',function(err){
-	// 	console.log('handle error');
-	// 	console.log(err);
-	// })
+	conn.on('error',function(err){
+		console.log('handle error');
+		console.log(err);
+	})
 }).listen('3000');                                                                                                                                                       
 console.log('node websocket run listening on port 3000')
